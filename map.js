@@ -7,11 +7,11 @@ function initMap() {
 	
 	// マーカー画像を作成 
 	var markerImg = new google.maps.MarkerImage( 
-		"http://zn3sky.sakura.ne.jp/image/trainicon.png", 
+		"/image/trainicon.png", 
 		new google.maps.Size(24, 24), 
 		new google.maps.Point(0, 0)
 	); 
-         	
+	
 	var stations = [ 
 		['東京',35.681382,139.766084], 
 		['神田',35.69169,139.770883], 
@@ -50,10 +50,9 @@ function initMap() {
 		}); 
 		// 吹き出し
 		var infowindow = new google.maps.InfoWindow({
-				content: this[0] + "駅"
+				content: this[0]
 		});
 		// 吹き出しを開いた状態にする
 		infowindow.open(map, marker);
-	
 	});
 }
