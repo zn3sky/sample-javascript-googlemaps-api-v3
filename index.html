@@ -5,8 +5,9 @@
 </head>
 <body>
 ・中央線の駅にマーカーを表示<br>
+・マーカーの画像をオリジナルに変更<img src="http://zn3sky.sakura.ne.jp/image/trainicon.png"><br>
 ・吹き出しを最初から開く<br>
-<div id="map" style="width : 100%; height : 500px;"></div>  
+<div id="map" style="width:100%; height:600px;"></div>  
 
 <script>
 function initMap() {
@@ -16,6 +17,13 @@ function initMap() {
 		zoom: 13
 	});
 	
+	// マーカー画像を作成 
+	var markerImg = new google.maps.MarkerImage( 
+		"http://zn3sky.sakura.ne.jp/image/trainicon.png", 
+		new google.maps.Size("50", "50"), 
+		new google.maps.Point(0, 0)
+	); 
+         	
 	var stations = [ 
 		['東京',35.681382,139.766084], 
 		['神田',35.69169,139.770883], 
@@ -43,24 +51,23 @@ function initMap() {
 		['高尾',35.642228,139.281787]
 	]; 
 	
-	// マーカーを作成 
-	jQuery.each(stations, function() 
-	{ 
+	jQuery.each(stations, function() { 
+		// マーカーを作成
 		var latlng = new google.maps.LatLng(this[1], this[2]); 
 		var marker = new google.maps.Marker({ 
 			position: latlng, 
 			map: map, 
-			title: this[0] 
+			icon: markerImg,
+			title: this[0]
 		}); 
+		// 吹き出し
 		var infowindow = new google.maps.InfoWindow({
-				content: this[0]
+				content: this[0] + "駅"
 		});
+		// 吹き出しを開いた状態にする
 		infowindow.open(map, marker);
 	
 	});
-	
-	
-
 }
 
 </script>
